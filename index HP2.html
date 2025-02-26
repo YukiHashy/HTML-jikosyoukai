@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+         /* グローバルスタイル */
+         * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color:#7b68ee;
+            padding: 15px;
+        }
+
+        .card {
+            background-color: white;
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative; /* フッターの位置調整のため */
+            padding-bottom: 70px; /* フッターの高さ分の余白 */
+        }
+        .profile-container {
+            background-color: #74b9ff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .photo-gallery {
+            margin: 50px auto;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: relative;
+        }
+
+        .photo {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 3rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .photo:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo .raindrops-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .photo:hover .raindrops-container {
+            opacity: 1;
+        }
+
+        /* プロフィール要素のレスポンシブスタイル */
+        .profile-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            /* border-radius: 90px; を削除 */
+            border-radius: 8px; /* 少し角を丸める */
+            margin: 0 auto;
+            display: block;
+            background-color: #a8e6ff;
+            margin-bottom: 30px;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .profile-description {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .about-me {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .head_test-wrap {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .head_test {
+            margin: 0;
+            font-size: 32px;
+            position: relative;
+            font-weight: bold;
+            display: inline-block;
+            background-color: white;
+            padding: 0 40px;
+            z-index: 1;
+        }
+
+        .head_test-wrap:before {
+            content: '';
+            background-color: #000;
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            top: 50%;
+            margin: auto;
+        }
+
+        .about-me-item {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            font-size: 20px;
+        }
+
+        .about-me-label {
+            font-weight: bold;
+            text-align: right;
+            width: 220px;
+        }
+
+        .about-me-value {
+            text-align: left;
+            width: 220px;
+        }
+
+        .link-button {
+            text-align: center;
+            display: block;
+            color: #0084ff;
+            text-decoration: none;
+            margin-top: 40px;
+            font-size: 20px;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .link-button:hover {
+            color: #0056b3;
+        }
+
+        /* フッターナビゲーション */
+        .footer-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 0;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .footer-nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+            padding: 5px;
+        }
+
+        .footer-nav a:hover {
+            color: #0084ff;
+            text-decoration: underline;
+        }
+
+        .footer-nav a.active {
+            font-weight: bold;
+            color: #0084ff;
+        }
+
+        /* タブレット向けメディアクエリ */
+        @media screen and (max-width: 991px) {
+            .card {
+                padding: 30px;
+                padding-bottom: 70px;
+            }
+
+            .profile-container {
+                padding: 20px;
+            }
+
+            .profile-title {
+                font-size: 30px;
+            }
+
+            .profile-name {
+                font-size: 28px;
+            }
+
+            .profile-description {
+                font-size: 20px;
+            }
+
+            .head_test {
+                font-size: 28px;
+                padding: 0 30px;
+            }
+
+            .about-me-item {
+                font-size: 18px;
+                gap: 30px;
+            }
+
+            .about-me-label, .about-me-value {
+                width: 180px;
+            }
+
+            .photo-gallery {
+                max-width: 600px;
+            }
+
+            .photo {
+                height: 250px;
+            }
+
+            .photo-overlay {
+                font-size: 2.5rem;
+            }
+
+            .footer-nav a {
+                margin: 0 10px;
+            }
+        }
+
+        /* モバイル向けメディアクエリ */
+        @media screen and (max-width: 767px) {
+            body {
+                padding: 10px;
+            }
+
+            .card {
+                padding: 20px;
+                padding-bottom: 70px;
+            }
+
+            .profile-container {
+                padding: 15px;
+            }
+
+            .profile-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                /* border-radius: 75px; を削除 */
+            }
+
+            .profile-name {
+                font-size: 22px;
+            }
+
+            .profile-description {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+
+            .head_test {
+                font-size: 22px;
+                padding: 0 20px;
+            }
+
+            .head_test-wrap {
+                margin-bottom: 30px;
+            }
+
+            .about-me-item {
+                flex-direction: column;
+                gap: 5px;
+                font-size: 16px;
+                align-items: center;
+            }
+
+            .about-me-label, .about-me-value {
+                width: 100%;
+                text-align: center;
+            }
+
+            .photo {
+                height: 200px;
+            }
+
+            .photo-overlay {
+                font-size: 2rem;
+            }
+
+            .link-button {
+                font-size: 16px;
+                margin-top: 30px;
+            }
+
+            .footer-nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+        }
+
+        /* 小さいモバイル向けメディアクエリ */
+        @media screen and (max-width: 479px) {
+            .card {
+                padding: 15px;
+                padding-bottom: 70px;
+            }
+
+            .profile-container {
+                padding: 10px;
+            }
+
+            .profile-title {
+                font-size: 20px;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+                /* border-radius: 60px; を削除 */
+            }
+
+            .profile-name {
+                font-size: 20px;
+            }
+
+            .profile-description {
+                font-size: 16px;
+            }
+
+            .head_test {
+                font-size: 20px;
+                padding: 0 15px;
+            }
+
+            .about-me-item {
+                font-size: 14px;
+            }
+
+            .photo {
+                height: 180px;
+            }
+
+            .photo-overlay {
+                font-size: 1.5rem;
+            }
+
+            .footer-nav a {
+                margin: 0 5px;
+                font-size: 13px;
+                padding: 3px;
+            }
+        }
+
+        /* タッチデバイス向けの調整 */
+        @media (hover: none) {
+            .photo-overlay {
+                opacity: 1;
+                background-color: rgba(0,0,0,0.3);
+            }
+            
+            .photo .raindrops-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="card">
+            <div class="profile-title">Profile</div>
+            <img src="profile.jpeg" alt="プロフィール画像" class="profile-image">
+            <div class="profile-name">Yuki Hashimoto</div>
+            <div class="profile-description">橋本 悠生</div>
+            
+            <div class="about-me">
+                <div class="head_test-wrap">
+                    <h1 class="head_test">About Me</h1>
+                </div>
+                <div class="about-me-item">
+                    <span class="about-me-label">Age/年齢</span>
+                    <span class="about-me-value">22</span>
+                </div>
+                <div class="about-me-item">
+                    <span class="about-me-label">Univ./大学</span>
+                    <span class="about-me-value">慶應大学</span>
+                </div>
+                <div class="about-me-item">
+                    <span class="about-me-label">Faculty/学部</span>
+                    <span class="about-me-value">環境情報学部</span>
+                </div>
+                <div class="about-me-item">
+                    <span class="about-me-label">Date of Birth/生年月日</span>
+                    <span class="about-me-value">02/05/17</span>
+                </div>
+            </div>
+
+            <div class="photo-gallery">
+                <a href="index loading to index 2.html" class="photo">
+                    <img src="Gakureki.jpg" alt="学歴">
+                    <div class="photo-overlay">学歴</div>
+                    <div class="raindrops-container"></div>
+                </a>
+                <a href="index loading to index 3.html" class="photo">
+                    <img src="Syumi.jpg" alt="趣味">
+                    <div class="photo-overlay">趣味</div>
+                    <div class="raindrops-container"></div>
+                </a>
+                <a href="index loading to index 4.html" class="photo">
+                    <img src="Baitoreki.png.webp" alt="バイト歴">
+                    <div class="photo-overlay">バイト歴</div>
+                    <div class="raindrops-container"></div>
+                </a>
+            </div>
+                 <!-- フッターナビゲーション -->
+            <div class="footer-nav">
+                <a href="HP.html">Home</a>
+                <a href="index HP.html">About Me</a>
+                <a href="personality.html">Personality</a>
+                <a href="goals.html">Goals</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+    /*
+     *  Query UI plugin for raindrops on water effect.
+     *  https://github.com/d-harel/raindrops.git
+     */
+    $.widget("water.raindrops", {
+        options: {
+            waveLength: 340,    // Wave Length. A numeric value. The higher the number, the smaller the wave length.
+            canvasWidth: 0,     // Width of the  water. Default is 100% of the parent's width
+            canvasHeight: 0,    // Height of the water. Default is 50% of the parent's height 
+            color: '#00aeef',   // Water Color
+            frequency: 3,       // Raindrops frequency. Higher number means more frequent raindrops.
+            waveHeight: 100 ,   // Wave height. Higher number means higher waves created by raindrops.
+            density: 0.02,      // Water density. Higher number means shorter ripples.
+            rippleSpeed:  0.1,  // Speed of the ripple effect. Higher number means faster ripples.
+            rightPadding: 20,    // To cover unwanted gaps created by the animation.
+            position:'absolute',
+            positionBottom:0,
+            positionLeft:0
+        },
+        _create: function () {
+            var canvas = window.document.createElement('canvas');
+            if (!this.options.canvasHeight) {
+                this.options.canvasHeight = this.element.height() / 2;
+            }
+            if (!this.options.canvasWidth) {
+                this.options.canvasWidth = this.element.width();
+            }
+            this.options.realWidth = this.options.canvasWidth + this.options.rightPadding;
+            canvas.height = this.options.canvasHeight;
+            canvas.width = this.options.realWidth;
+
+            this.ctx = canvas.getContext('2d');
+            this.ctx.fillStyle = this.options.color;
+            this.element.append(canvas);
+            canvas.parentElement.style.overflow = 'hidden';
+            canvas.parentElement.style.position = 'relative';
+            canvas.style.position = this.options.position;
+            canvas.style.bottom = this.options.positionBottom;
+            canvas.style.left = this.options.positionLeft;
+            
+            this.springs = [];
+            for (var i = 0; i < this.options.waveLength; i++)
+            {
+                this.springs[i] = new this.Spring();
+            }
+
+            raindropsAnimationTick(this);
+        },
+        Spring: function ()
+        {
+            this.p = 0;
+            this.v = 0;
+            this.update = function (density, rippleSpeed)
+            {
+                this.v += (-rippleSpeed * this.p - density * this.v);
+                this.p += this.v;
+            };
+        },
+        updateSprings: function (spread) {
+            var i;
+            for (i = 0; i < this.options.waveLength; i++)
+            {
+                this.springs[i].update(this.options.density, this.options.rippleSpeed);
+            }
+
+            var leftDeltas = [],
+                    rightDeltas = [];
+
+            for (var t = 0; t < 8; t++) {
+
+                for (i = 0; i < this.options.waveLength; i++)
+                {
+                    if (i > 0)
+                    {
+                        leftDeltas[i] = spread * (this.springs[i].p - this.springs[i - 1].p);
+                        this.springs[i - 1].v += leftDeltas[i];
+                    }
+                    if (i < this.options.waveLength - 1)
+                    {
+                        rightDeltas[i] = spread * (this.springs[i].p - this.springs[i + 1].p);
+                        this.springs[i + 1].v += rightDeltas[i];
+                    }
+                }
+
+                for (i = 0; i < this.options.waveLength; i++)
+                {
+                    if (i > 0)
+                        this.springs[i - 1].p += leftDeltas[i];
+                    if (i < this.options.waveLength - 1)
+                        this.springs[i + 1].p += rightDeltas[i];
+                }
+
+            }
+
+        },
+        renderWaves: function ()
+        {
+            var i;
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, this.options.canvasHeight);
+            for (i = 0; i < this.options.waveLength; i++)
+            {
+                this.ctx.lineTo(i * (this.options.realWidth / this.options.waveLength), (this.options.canvasHeight / 2) + this.springs[i].p);
+            }
+            this.ctx.lineTo(this.options.realWidth, this.options.canvasHeight);
+            this.ctx.fill();
+        } 
+    });
+
+    function raindropsAnimationTick(drop) {
+        if ((Math.random() * 100) < drop.options.frequency)
+            drop.springs[Math.floor(Math.random() * drop.options.waveLength)].p = drop.options.waveHeight;
+
+        drop.ctx.clearRect(0, 0, drop.options.realWidth, drop.options.canvasHeight);
+        drop.updateSprings(0.1);
+        drop.renderWaves();
+
+        requestAnimationFrame(function () {
+            raindropsAnimationTick(drop);
+        });
+    }
+    </script>
+    <script>
+        jQuery(document).ready(function($) {
+            // レスポンシブ対応のためにウィンドウサイズに応じてraindropsを初期化
+            function initRaindrops() {
+                // モバイルデバイスではエフェクトを無効化
+                if (window.matchMedia('(hover: none)').matches) {
+                    return;
+                }
+                
+                jQuery(".photo").on({
+                    mouseenter: function() {
+                        $(this).find(".raindrops-container").raindrops({
+                            color: "rgba(0, 187, 221, 0.5)", // Semi-transparent blue
+                            canvasHeight: $(this).height() / 2, // 写真の高さの半分
+                            density: 0.05,
+                            frequency: 50,
+                            rippleSpeed: 0.1,
+                            pauseRipple: false
+                        });
+                    },
+                    mouseleave: function() {
+                        // Remove the raindrops effect when mouse leaves
+                        $(this).find(".raindrops-container").empty();
+                    }
+                });
+            }
+
+            // 初期化
+            initRaindrops();
+            
+            // ウィンドウサイズ変更時にraindropsを再初期化
+            $(window).on('resize', function() {
+                jQuery(".photo").find(".raindrops-container").empty();
+                initRaindrops();
+            });
+            
+            // 現在のページを示すためのアクティブ状態の設定
+            var path = window.location.pathname;
+            var page = path.split("/").pop();
+            
+            $('.footer-nav a').each(function() {
+                var href = $(this).attr('href');
+                if (href === page || (page === '' && href === 'index.html')) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
