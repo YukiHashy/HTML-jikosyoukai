@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今後の目標</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            position: relative;
+            padding-bottom: 70px; /* フッターの高さ分の余白 */
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1em;
+            border-radius: 8px;
+        }
+        
+        p {
+            margin: 0;
+            line-height: 2;
+            text-align: center;
+            margin-bottom: 1.5em;
+        }
+        
+        .back-link {
+            margin: 3em auto;
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+        
+        .toc-container {
+            width: 60%;
+            max-width: 400px;
+            margin: 2em auto 5em auto;
+            border: 3px solid orange;
+            padding: 30px 20px 20px;
+            display: inline-block;
+            text-align: left;
+            border-radius: 10px;
+            position: relative;
+            background-color: white;
+        }
+        
+        .toc-title {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: orange;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 1.5em;
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            margin: 10px 0;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .toc li::before {
+            content: "\25A0";
+            color: blue;
+            margin-right: 10px;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+        
+        .toc a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.8);
+            font-weight: bold;
+        }
+        
+        .goals-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            margin-bottom: 1.5em;
+            border-top: 3px solid #3498db;
+            border-bottom: 3px solid #3498db;
+            color: #2980b9;
+            text-align: center;
+        }
+        
+        .main-goal {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: .5em;
+            margin-bottom: 1.5em;
+            margin-top: 4em;
+            border-radius: 15px;
+            color: #2f51a2;
+            background: #f4f4f4;
+            border: 2px solid #2f51a2;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .head_test {
+            margin:  0;                 /* デフォルトCSS打ち消し */
+            font-size:  24px;           /* 文字サイズ指定 */
+            position:  relative;        /* 位置調整 */
+            font-weight:  normal;       /* 文字の太さ調整 */
+            display:  inline-block;     /* インラインブロックにする */
+            background-color: #feeaac;  /* 背景色指定 */
+            padding:  10px;             /* 余白指定 */
+            margin-bottom: 15px;        /* 周りの余白指定 */
+            border-radius:  2px;        /* 角丸指定 */
+        }
+        
+        p {
+            margin:  0;                 /* デフォルトCSS打ち消し */
+            line-height: 2;             /* 行間調整 */
+        }
+        
+        .head_test:before {
+            content:  '';               /* 空白の要素を作る */
+            background-color: #b3b3b3;  /* 背景色指定 */
+            display:  block;            /* ブロック要素にする */
+            position:  absolute;        /* 位置調整 */
+            left: 50%;                  /* 位置調整 */
+            height: 60%;                /* 高さ指定 */
+            top: 26%;                   /* 位置調整 */
+            z-index:  -1;               /* 重なり調整 */
+            width: 46%;                 /* 幅指定 */
+            box-shadow: 0 0 8px 8px #b3b3b3;/* 影指定 */
+            transform: rotate(3deg);    /* 回転 */
+        }
+        
+        .head_test-wrap {
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 30px;
+            position: relative;
+        }
+        
+        /* 段落のタイトル用スタイル */
+        .list-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 30px 0 15px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .list-title:before, .list-title:after {
+            content: "";
+            flex-grow: 1;
+            height: 2px;
+            background-color: #ccc;
+            margin: 0 15px;
+        }
+        
+        .goal-section {
+            margin-top: 2em;
+            padding: 2em;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2em;
+        }
+        
+        .goal-detail {
+            text-align: left;
+            margin-bottom: 1.5em;
+        }
+        
+        .goal-detail ul {
+            list-style-type: disc;
+            padding-left: 2em;
+            margin-bottom: 1.5em;
+        }
+        
+        .goal-detail li {
+            margin-bottom: 0.5em;
+        }
+        
+        /* フッターナビゲーション */
+        .footer-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 0;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .footer-nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+            padding: 5px;
+        }
+
+        .footer-nav a:hover {
+            color: #0084ff;
+            text-decoration: underline;
+        }
+
+        .footer-nav a.active {
+            font-weight: bold;
+            color: #0084ff;
+        }
+        
+        /* タブレット向けスタイル */
+        @media screen and (max-width: 768px) {
+            .toc-container {
+                width: 80%;
+            }
+            
+            .main-goal {
+                font-size: 1.3em;
+                margin-top: 3em;
+            }
+            
+            .head_test {
+                font-size: 20px;
+            }
+            
+            .head_test-wrap {
+                margin-bottom: 30px;
+                margin-top: 25px;
+            }
+            
+            .goals-title {
+                font-size: 1.5em;
+            }
+            
+            .list-title {
+                font-size: 1.1em;
+                margin: 25px 0 12px;
+            }
+            
+            .list-title:before, .list-title:after {
+                margin: 0 10px;
+            }
+        }
+            
+            .toc li {
+                font-size: 1.1em;
+            }
+            
+            .footer-nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+        }
+        
+        /* モバイル向けスタイル */
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 15px;
+                padding-bottom: 70px;
+            }
+            
+            .toc-container {
+                width: 100%;
+                padding: 25px 15px 15px;
+            }
+            
+            .toc-title {
+                font-size: 1.2em;
+                top: -15px;
+            }
+            
+            .toc li {
+                font-size: 1em;
+                margin: 8px 0;
+            }
+            
+            .toc li::before {
+                font-size: 1.2em;
+                margin-right: 8px;
+            }
+            
+            .main-goal {
+                font-size: 1.2em;
+                padding: .4em;
+                margin-top: 2.5em;
+                margin-bottom: 1em;
+            }
+            
+            .head_test {
+                font-size: 18px;
+                padding: 8px;
+            }
+            
+            .head_test-wrap {
+                margin-bottom: 20px;
+                margin-top: 20px;
+            }
+            
+            .goals-title {
+                font-size: 1.3em;
+                padding-top: 0.8em;
+                padding-bottom: 0.8em;
+            }
+            
+            p {
+                font-size: 0.95em;
+            }
+            
+            .footer-nav a {
+                margin: 0 6px;
+                font-size: 13px;
+                padding: 3px;
+            }
+            
+            .list-title {
+                font-size: 1em;
+                margin: 20px 0 10px;
+            }
+            
+            .list-title:before, .list-title:after {
+                margin: 0 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="goals-title">今後の目標</p>
+        
+        <div class="toc-container">
+            <div class="toc-title">目次</div>
+            <div class="toc">
+                <ul>
+                    <li><a href="#company-goals">Cellmullerでの目標</a></li>
+                    <li><a href="#personal-goals">自身の目標</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="goal-section" id="company-goals">
+            <p class="main-goal">Cellmullerでの目標</p>
+            
+            <div class="head_test-wrap">
+                <h2 class="head_test">成長</h2>
+            </div>
+            <div class="goal-detail">
+                <div class="list-title">データ分析</div>
+                <ul>
+                    <li>Excelをマスターする</li>
+
+                </ul>
+                
+                <div class="list-title">社会人に必要なスキルの習得</div>
+                <ul>
+                    <li>敬語の適切な使い方について</li>
+                    <li>ビジネスメールの書き方</li>
+                    <li>報連相の徹底</li>
+                    <li>プレゼンテーション能力</li>
+                </ul>
+            </div>
+            
+            <div class="head_test-wrap">
+                <h2 class="head_test">弱点の克服</h2>
+            </div>
+            <div class="goal-detail">
+                <div class="list-title">長期的な目標の立て方</div>
+                <ul>
+                    <li>3ヶ月、半年、1年単位での目標設定の習慣化</li>
+                    <li>目標達成のための具体的なステップの明確化</li>
+                    <li>定期的な進捗確認の仕組み作り</li>
+                </ul>
+                
+                <div class="list-title">優先順位の設定</div>
+                <ul>
+                    <li>タスク管理ツールの活用</li>
+                    <li>緊急度と重要度を考慮したタスク整理法の習得</li>
+                    <li>時間管理スキルの向上</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="goal-section" id="personal-goals">
+            <p class="main-goal">自身の目標</p>
+            
+            <div class="head_test-wrap">
+                <h2 class="head_test">まずは就職</h2>
+            </div>
+            <div class="goal-detail">
+                <div class="list-title">面接</div>
+                <ul>
+                    <li>ケース面接の対策</li>
+                    <li>質疑応答を録画して振り返る</li>
+                    <li>暗記する場所はしっかり暗記し、詰まらないようにする</li>
+                </ul>
+                
+                <div class="list-title">自己分析</div>
+                <ul>
+                    <li>強み・弱みの具体例を5つ以上リストアップ</li>
+                    <li>自分の軸を深掘りされても平気なように、もう１段階深く考える</li>
+                    <li>将来のキャリアビジョンを具体的に考える</li>
+                </ul>
+            </div>
+            
+            <div class="head_test-wrap">
+                <h2 class="head_test">大学卒業までにやりたいこと</h2>
+            </div>
+            <div class="goal-detail">
+                <div class="list-title">アプリのリリース</div>
+                <ul>
+                    <li>AIについて学ぶ</li>
+                    <li>必要であればPython以外の言語も学ぶ</li>
+                    <li>既存の家計簿アプリとの差別化を図るため、色々な人気家計簿アプリを自分でも使ってみる</li>
+                    <li>必要に応じてマーケティングについて学ぶ</li>
+                </ul>
+                
+                <div class="list-title">フットサルのプロ試験を受ける</div>
+                <ul>
+                    <li>反射神経が衰えないようトレーニング</li>
+                    <li>フットサル特有の強い動きや、立ち回りを研究</li>
+                    <li>まずトライアウトを受けるためのコネを作る</li>
+                    <li>社会人チームに所属している元プロの方を探し出し、教えてもらう</li>
+                </ul>
+                
+                <div class="list-title">TOEIC 900点達成</div>
+                <ul>
+                    <li>毎日30分単語帳か長文読解の勉強を行う</li>
+                    <li>1ヶ月ごとに模擬テストを受け、テストの効率的な解き方などを養う</li>
+                    <li>リスニングは満点を目指す</li>
+                </ul>
+            </div>
+        </div>
+        
+        <a href="loading to HP.html" class="back-link">最初のページに戻る</a>
+        
+        <!-- フッターナビゲーション -->
+        <div class="footer-nav">
+            <a href="HP.html">Home</a>
+            <a href="index HP.html">About Me</a>
+            <a href="personality.html">Personality</a>
+            <a href="goals.html" class="active">Goals</a>
+        </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            // 現在のページを示すためのアクティブ状態の設定
+            var path = window.location.pathname;
+            var page = path.split("/").pop();
+            
+            $('.footer-nav a').each(function() {
+                var href = $(this).attr('href');
+                if (href === page || (page === '' && href === 'index.html')) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
