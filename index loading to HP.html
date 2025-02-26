@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="refresh" content="1;url=index HP.html">
+   <title>Loading...</title>
+   <style>
+       * {
+           box-sizing: border-box;
+           margin: 0;
+           padding: 0;
+       }
+
+       body {
+           font-family: Arial, sans-serif;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           min-height: 100vh;
+           margin: 0;
+           background-color: #00091B;
+           overflow: hidden;
+       }
+
+       .container {
+           position: absolute;
+           width: 100%;
+           max-width: 45rem;
+           height: 15rem;
+           left: 50%;
+           top: 50%;
+           transform: translate(-50%, -50%);
+           padding: 0 1rem;
+       }
+
+       .text {
+           color: #fff;
+           font-size: 3rem;
+           font-weight: 900;
+           display: inline-block;
+           position: absolute;
+           bottom: 3rem;
+           animation: text 1050ms ease-in infinite;
+           transform: translatez(0);
+       }
+
+       .coast {
+           position: absolute;
+           left: 1.3rem;
+           bottom: 0;
+           width: 12rem;
+           height: 2.2rem;
+           display: inline-block;
+           animation: coast 1100ms linear infinite;
+           transform: translateZ(0);
+       }
+
+       .wave-rel-wrap {
+           position: relative;
+           width: 100%;
+           height: 100%;
+           perspective: 3rem;
+           perspective-origin: 0%, 50%;
+       }
+
+       .wave {
+           position: absolute;
+           width: 12rem;
+           height: 2.2rem;
+           border-radius: 1.1rem;
+           background: radial-gradient(ellipse at center, rgba(116, 241, 252, 1) 0%, rgba(50, 230, 255, 1) 73%, rgba(21, 199, 250, 1) 100%);
+           display: inline-block;
+           animation: wave 1100ms linear infinite;
+           will-change: width, transform;
+           transform: translateZ(0) scale(1);
+           transform-origin: center center;
+       }
+
+       /* デスクトップサイズのテキスト位置 */
+       .text-n { left: 0rem; }
+       .text-o { left: 3rem; animation-delay: 50ms; }
+       .text-w { left: 6rem; animation-delay: 100ms; }
+       .text-space { left: 9rem; animation-delay: 150ms; }
+       .text-l { left: 12rem; animation-delay: 200ms; }
+       .text-o2 { left: 15rem; animation-delay: 250ms; }
+       .text-a { left: 18rem; animation-delay: 300ms; }
+       .text-d { left: 21rem; animation-delay: 350ms; }
+       .text-i { left: 24rem; animation-delay: 400ms; }
+       .text-n2 { left: 27rem; animation-delay: 450ms; }
+       .text-g { left: 30rem; animation-delay: 500ms; }
+       .text-dot1 { left: 33rem; animation-delay: 550ms; }
+       .text-dot2 { left: 36rem; animation-delay: 600ms; }
+       .text-dot3 { left: 39rem; animation-delay: 650ms; }
+
+       @keyframes text {
+           0% { transform: translate3d(0, 0, 0); }
+           30% { transform: translate3d(0, 0, 0); }
+           45% { transform: translate3d(0, -4rem, 0); }
+           100% { transform: translate3d(0, 0, 0); }
+       }
+
+       @keyframes coast {
+           0% { transform: translate3d(0, 0, 0); }
+           23% { transform: translate3d(0, 0, 0); }
+           75% { transform: translate3d(35rem, 0, 0); }
+           100% { transform: translate3d(35rem, 0, 0); }
+       }
+
+       @keyframes wave {
+           0% {
+               transform: scale(1, 0.5);
+               width: 2.2rem;
+           }
+           20% { transform: scale(1, 1); }
+           50% { width: 12rem; transform: scale(1, 1); }
+           75% { width: 12rem; transform: scale(1, 1); }
+           85% { transform: scale(0.8, 0.8); width: 10rem; }
+           100% { transform: scale(0, 0); width: 0; }
+       }
+
+       /* タブレット向けメディアクエリ */
+       @media screen and (max-width: 768px) {
+           .container {
+               max-width: 36rem;
+           }
+
+           .text {
+               font-size: 2.5rem;
+           }
+
+           .coast {
+               width: 10rem;
+               height: 1.8rem;
+           }
+
+           .wave {
+               width: 10rem;
+               height: 1.8rem;
+               border-radius: 0.9rem;
+           }
+
+           /* テキスト位置の調整 */
+           .text-n { left: 0rem; }
+           .text-o { left: 2.5rem; }
+           .text-w { left: 5rem; }
+           .text-space { left: 7.5rem; }
+           .text-l { left: 10rem; }
+           .text-o2 { left: 12.5rem; }
+           .text-a { left: 15rem; }
+           .text-d { left: 17.5rem; }
+           .text-i { left: 20rem; }
+           .text-n2 { left: 22.5rem; }
+           .text-g { left: 25rem; }
+           .text-dot1 { left: 27.5rem; }
+           .text-dot2 { left: 30rem; }
+           .text-dot3 { left: 32.5rem; }
+
+           @keyframes coast {
+               0% { transform: translate3d(0, 0, 0); }
+               23% { transform: translate3d(0, 0, 0); }
+               75% { transform: translate3d(28rem, 0, 0); }
+               100% { transform: translate3d(28rem, 0, 0); }
+           }
+       }
+
+       /* モバイル向けメディアクエリ */
+       @media screen and (max-width: 480px) {
+           .container {
+               max-width: 22rem;
+               height: 12rem;
+           }
+
+           .text {
+               font-size: 1.5rem;
+               bottom: 2.5rem;
+           }
+
+           .coast {
+               width: 6rem;
+               height: 1.2rem;
+               left: 0.8rem;
+           }
+
+           .wave {
+               width: 6rem;
+               height: 1.2rem;
+               border-radius: 0.6rem;
+           }
+
+           /* テキスト位置の調整 */
+           .text-n { left: 0rem; }
+           .text-o { left: 1.5rem; }
+           .text-w { left: 3rem; }
+           .text-space { left: 4.5rem; }
+           .text-l { left: 6rem; }
+           .text-o2 { left: 7.5rem; }
+           .text-a { left: 9rem; }
+           .text-d { left: 10.5rem; }
+           .text-i { left: 12rem; }
+           .text-n2 { left: 13.5rem; }
+           .text-g { left: 15rem; }
+           .text-dot1 { left: 16.5rem; }
+           .text-dot2 { left: 18rem; }
+           .text-dot3 { left: 19.5rem; }
+
+           @keyframes text {
+               0% { transform: translate3d(0, 0, 0); }
+               30% { transform: translate3d(0, 0, 0); }
+               45% { transform: translate3d(0, -2.5rem, 0); }
+               100% { transform: translate3d(0, 0, 0); }
+           }
+
+           @keyframes coast {
+               0% { transform: translate3d(0, 0, 0); }
+               23% { transform: translate3d(0, 0, 0); }
+               75% { transform: translate3d(16rem, 0, 0); }
+               100% { transform: translate3d(16rem, 0, 0); }
+           }
+
+           @keyframes wave {
+               0% {
+                   transform: scale(1, 0.5);
+                   width: 1.2rem;
+               }
+               20% { transform: scale(1, 1); }
+               50% { width: 6rem; transform: scale(1, 1); }
+               75% { width: 6rem; transform: scale(1, 1); }
+               85% { transform: scale(0.8, 0.8); width: 5rem; }
+               100% { transform: scale(0, 0); width: 0; }
+           }
+       }
+
+       /* 超小型デバイス向けメディアクエリ */
+       @media screen and (max-width: 320px) {
+           .container {
+               max-width: 16rem;
+           }
+
+           .text {
+               font-size: 1.2rem;
+           }
+
+           /* テキスト位置の調整 */
+           .text-n { left: 0rem; }
+           .text-o { left: 1.2rem; }
+           .text-w { left: 2.4rem; }
+           .text-space { left: 3.6rem; }
+           .text-l { left: 4.8rem; }
+           .text-o2 { left: 6rem; }
+           .text-a { left: 7.2rem; }
+           .text-d { left: 8.4rem; }
+           .text-i { left: 9.6rem; }
+           .text-n2 { left: 10.8rem; }
+           .text-g { left: 12rem; }
+           .text-dot1 { left: 13.2rem; }
+           .text-dot2 { left: 14.4rem; }
+           .text-dot3 { left: 15.6rem; }
+
+           @keyframes coast {
+               0% { transform: translate3d(0, 0, 0); }
+               23% { transform: translate3d(0, 0, 0); }
+               75% { transform: translate3d(12rem, 0, 0); }
+               100% { transform: translate3d(12rem, 0, 0); }
+           }
+       }
+   </style>
+</head>
+<body>
+   <div class="container">
+       <!-- 動く楕円のみ残す -->
+       <div class="coast">
+           <div class="wave-rel-wrap">
+               <div class="wave"></div>
+           </div>
+       </div>
+
+       <div class="text text-n">N</div>
+       <div class="text text-o">o</div>
+       <div class="text text-w">w</div>
+       <div class="text text-space">&nbsp;</div>
+       <div class="text text-l">l</div>
+       <div class="text text-o2">o</div>
+       <div class="text text-a">a</div>
+       <div class="text text-d">d</div>
+       <div class="text text-i">i</div>
+       <div class="text text-n2">n</div>
+       <div class="text text-g">g</div>
+       <div class="text text-dot1">.</div>
+       <div class="text text-dot2">.</div>
+       <div class="text text-dot3">.</div>
+   </div>
+</body>
+</html>
