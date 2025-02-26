@@ -1,0 +1,53 @@
+/* 名前を真ん中に */
+h1 {
+    text-align: center; /* h1 を中央揃え */
+  }
+  
+  /* 生年月日を真ん中に */
+  h3 {
+    text-align: center; /* h3 を中央揃え */
+  }
+  
+  /* その他を左に */
+  .AboutMe {
+    text-align: left; /* AboutMe クラス内のテキストを左揃え */
+  }
+  
+  /* フォントを変更 */
+  .test_box {
+    font-size: 25px; /* 文字サイズ指定 */
+    margin: 20px; /* 空白指定 */
+  }
+  
+  .font_test {
+    font-family: 'arial black', serif; /* フォントの種類指定 */
+  }
+
+  .profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 90px;
+    margin: 0 auto;
+    display: block;
+    background-color: #a8e6ff;
+    margin-bottom: 30px;
+}
+
+/.profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 90px;
+    margin: 0 auto;
+    display: block;
+    background-color: #a8e6ff;
+    margin-bottom: 30px;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 480px) {
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 60px;
+    }
+}
