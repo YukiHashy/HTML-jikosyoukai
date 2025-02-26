@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学歴</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1em;
+            border-radius: 8px;
+        }
+        
+        p {
+            margin-bottom: 1.5em;
+        }
+        
+        .back-link {
+            margin: 3em auto;
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+        
+        .toc-container {
+            width: 80%;
+            max-width: 500px;
+            margin: 2em auto 5em auto;
+            border: 3px solid orange;
+            padding: 30px 20px 20px;
+            display: inline-block;
+            text-align: left;
+            border-radius: 10px;
+            position: relative;
+            background-color: white;
+        }
+        
+        .toc-title {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: orange;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 1.5em;
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            margin: 10px 0;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .toc li::before {
+            content: "\25A0";
+            color: blue;
+            margin-right: 10px;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+        
+        .toc a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.8);
+            font-weight: bold;
+        }
+        
+        .sample_h_8 {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: .5em;
+            margin-bottom: 1.5em;
+            margin-top: 4em;
+            border-radius: 15px;
+            color: #2f51a2;
+            background: #f4f4f4;
+            border: 2px solid #2f51a2;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            display: block;
+            width: 100%;
+        }
+        
+        .sample_h_1 {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding-top: 1em;
+            padding-bottom: .5em;
+            margin-bottom: 1.5em;
+            border-bottom: solid 3px #111111;
+        }
+        
+        .sample_h_4 {
+            font-size: 1.8em;
+            font-weight: bold;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            margin-bottom: 1.5em;
+            border-top: 3px solid #3f9613;
+            border-bottom: 3px solid #409614;
+            color: #409614;
+            text-align: center;
+        }
+        
+        h3 {
+            margin-top: 3em;
+        }
+        
+        .school-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1.5em;
+        }
+        
+        .school-images img {
+            width: 300px;
+            height: 200px;
+            object-fit: contain;
+            flex: 0 0 auto;
+        }
+        
+        /* タブレット向けスタイル */
+        @media screen and (max-width: 768px) {
+            .toc-container {
+                width: 90%;
+            }
+            
+            .sample_h_8 {
+                font-size: 1.3em;
+                margin-top: 3em;
+            }
+            
+            .sample_h_1 {
+                font-size: 1.3em;
+                padding-top: 0.8em;
+            }
+            
+            .sample_h_4 {
+                font-size: 1.5em;
+            }
+            
+            .toc li {
+                font-size: 1.1em;
+            }
+            
+            .school-images img {
+                width: 250px;
+                height: 170px;
+            }
+        }
+        
+        /* モバイル向けスタイル */
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .toc-container {
+                width: 100%;
+                padding: 25px 15px 15px;
+            }
+            
+            .toc-title {
+                font-size: 1.2em;
+                top: -15px;
+            }
+            
+            .toc li {
+                font-size: 1em;
+                margin: 8px 0;
+            }
+            
+            .toc li::before {
+                font-size: 1.2em;
+                margin-right: 8px;
+            }
+            
+            .sample_h_8 {
+                font-size: 1.2em;
+                padding: .4em;
+                margin-top: 2.5em;
+                margin-bottom: 1em;
+            }
+            
+            .sample_h_1 {
+                font-size: 1.2em;
+                padding-top: 0.5em;
+                margin-bottom: 1em;
+            }
+            
+            .sample_h_4 {
+                font-size: 1.3em;
+                padding-top: 0.8em;
+                padding-bottom: 0.8em;
+            }
+            
+            .school-images {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .school-images img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                margin-bottom: 10px;
+            }
+            
+            p {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="sample_h_4">学歴</p>
+        
+        <div class="toc-container">
+            <div class="toc-title">目次</div>
+            <div class="toc">
+                <ul>
+                    <li><a href="#shougaku">小学校</a></li>
+                    <li><a href="#chugaku">中学校</a></li>
+                    <li><a href="#koukou1">高校1</a></li>
+                    <li><a href="#koukou2">高校2</a></li>
+                    <li><a href="#daigaku">大学</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <p class="sample_h_8" id="shougaku">小学校</p>
+        <p class="sample_h_1">碑小学校</p>
+        <div class="school-images">
+            <img src="Ishibumi.JPG" alt="小学校の頃の写真">
+        </div>
+        <p>アメリカへ引っ越すまで、５年生まで通学していました。今も同級生たちとは仲良くしていただいてます。</p>
+        
+        <p class="sample_h_8" id="chugaku">中学校</p>
+        <p class="sample_h_1">Hyde Middle School</p>
+        <div class="school-images">
+            <img src="Hyde.JPG" alt="中学校の頃の写真">
+        </div>
+        <p>アメリカの小学校は５年制のため、中学校からスタートでした。最初は英語も分からず美術で留年しかけたこともあり、ホームシックならぬジャパンシックになっていたことも。数学は九九をいえるだけで２学年飛び級できました。</p>
+        
+        <p class="sample_h_8" id="koukou1">高校</p>
+        <p class="sample_h_1">1. Cupertino High School</p>
+        <div class="school-images">
+            <img src="daigaku.jpg" alt="こっちの高校時代の写真なかったです泣">
+        </div>
+        <p>アメリカは高校まで義務教育であり、高校受験もほぼ存在しないため、中学の同級生たちと同じ高校へ進学。ようやく英語にも慣れ、Honor Rollという成績優秀者（GPA3.2以上）に与えられる賞を一度だけ獲得できました。</p>
+
+        <p class="sample_h_1" id="koukou2">2. Keio Academy of New York</p>
+        <div class="school-images">
+            <img src="KONY.JPG" alt="高校の頃の写真">
+        </div>
+        <p>アメリカの高校は４年制度なので、転入したこの高校で残りの3年を過ごしました。サッカー部が強く、ニューヨーク州ベスト8に入賞しました。また、私はMVPを受賞した際、ローカル紙に掲載させていただいた。ただ学業は散々でした、、、</p>
+
+        <p class="sample_h_8" id="daigaku">大学</p>
+        <p class="sample_h_1">慶應大学 環境情報学部</p>
+        <div class="school-images">
+            <img src="SFC.JPEG" alt="大学の頃の写真">
+            <img src="SFC2.JPG" alt="大学キャンパスの写真">
+        </div>
+        <p>内部進学。元々は建築家になりたいと思いこちらの学部を選びましたが、気づいたら脳科学→哲学→プログラミングとやることが変わっていき、現在はアプリ開発を主に行なっている研究会に所属しています。</p>
+        
+        <a href="index loading to HP2.html" class="back-link">最初のページに戻る</a>
+    </div>
+</body>
+</html>
