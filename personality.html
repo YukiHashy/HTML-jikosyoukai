@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>強みと弱み</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            position: relative;
+            padding-bottom: 70px; /* フッターの高さ分の余白 */
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1em;
+            border-radius: 8px;
+        }
+        
+        p {
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+        
+        .back-link {
+            margin: 3em auto;
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+        
+        .toc-container {
+            width: 80%;
+            max-width: 500px;
+            margin: 2em auto 5em auto;
+            border: 3px solid orange;
+            padding: 30px 20px 20px;
+            display: inline-block;
+            text-align: left;
+            border-radius: 10px;
+            position: relative;
+            background-color: white;
+        }
+        
+        .toc-title {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: orange;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 1.5em;
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            margin: 10px 0;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .toc li::before {
+            content: "\25A0";
+            color: blue;
+            margin-right: 10px;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+        
+        .toc a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.8);
+            font-weight: bold;
+        }
+        
+        .sample_h_8 {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: .5em;
+            margin-bottom: 1.5em;
+            margin-top: 4em;
+            border-radius: 15px;
+            color: #2f51a2;
+            background: #f4f4f4;
+            border: 2px solid #2f51a2;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .sample_h_1 {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding-top: 1em;
+            padding-bottom: .5em;
+            margin-bottom: 1.5em;
+            border-bottom: solid 3px #111111;
+            text-align: center;
+        }
+        
+        .sample_h_4 {
+            font-size: 1.8em;
+            font-weight: bold;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            margin-bottom: 1.5em;
+            border-top: 3px solid #3f9613;
+            border-bottom: 3px solid #409614;
+            color: #409614;
+            text-align: center;
+        }
+        
+        h3 {
+            margin-top: 3em;
+        }
+        
+        .strength-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1.5em;
+        }
+        
+        .strength-images img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            flex: 0 0 auto;
+        }
+        
+        /* 弱みセクション用のスタイル */
+        .weakness-section {
+            margin-top: 5em;
+            padding: 2em;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sample_h_5 {
+            font-size: 1.8em;
+            font-weight: bold;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            margin-bottom: 1.5em;
+            border-top: 3px solid #e74c3c;
+            border-bottom: 3px solid #e74c3c;
+            color: #c0392b;
+            text-align: center;
+        }
+        
+        .sample_h_9 {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: .5em;
+            margin-bottom: 1.5em;
+            margin-top: 2em;
+            border-radius: 15px;
+            color: #c0392b;
+            background: #f4f4f4;
+            border: 2px solid #c0392b;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        /* フッターナビゲーション */
+        .footer-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 0;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .footer-nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+            padding: 5px;
+        }
+
+        .footer-nav a:hover {
+            color: #0084ff;
+            text-decoration: underline;
+        }
+
+        .footer-nav a.active {
+            font-weight: bold;
+            color: #0084ff;
+        }
+        
+        /* タブレット向けスタイル */
+        @media screen and (max-width: 768px) {
+            .toc-container {
+                width: 90%;
+            }
+            
+            .sample_h_8, .sample_h_9 {
+                font-size: 1.3em;
+                margin-top: 3em;
+            }
+            
+            .sample_h_1 {
+                font-size: 1.3em;
+                padding-top: 0.8em;
+            }
+            
+            .sample_h_4, .sample_h_5 {
+                font-size: 1.5em;
+            }
+            
+            .toc li {
+                font-size: 1.1em;
+            }
+            
+            .strength-images img {
+                width: 250px;
+                height: 170px;
+            }
+            
+            .footer-nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+        }
+        
+        /* モバイル向けスタイル */
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 15px;
+                padding-bottom: 70px;
+            }
+            
+            .toc-container {
+                width: 100%;
+                padding: 25px 15px 15px;
+            }
+            
+            .toc-title {
+                font-size: 1.2em;
+                top: -15px;
+            }
+            
+            .toc li {
+                font-size: 1em;
+                margin: 8px 0;
+            }
+            
+            .toc li::before {
+                font-size: 1.2em;
+                margin-right: 8px;
+            }
+            
+            .sample_h_8, .sample_h_9 {
+                font-size: 1.2em;
+                padding: .4em;
+                margin-top: 2.5em;
+                margin-bottom: 1em;
+            }
+            
+            .sample_h_1 {
+                font-size: 1.2em;
+                padding-top: 0.5em;
+                margin-bottom: 1em;
+            }
+            
+            .sample_h_4, .sample_h_5 {
+                font-size: 1.3em;
+                padding-top: 0.8em;
+                padding-bottom: 0.8em;
+            }
+            
+            .strength-images {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .strength-images img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                margin-bottom: 10px;
+            }
+            
+            p {
+                font-size: 0.95em;
+            }
+            
+            .footer-nav a {
+                margin: 0 6px;
+                font-size: 13px;
+                padding: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="sample_h_4">強み</p>
+        
+        <div class="toc-container">
+            <div class="toc-title">目次</div>
+            <div class="toc">
+                <ul>
+                    <li><a href="#caring">面倒見の良さ</a></li>
+                    <li><a href="#focus">集中力</a></li>
+                    <li><a href="#adaptability">適応力</a></li>
+                    <li><a href="#weakness">弱み（おまけ）</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <p class="sample_h_8" id="caring">面倒見の良さ</p>
+        <p>周囲からはいつも「面倒見がいい」と言われることが多いです。<br>
+        高校時代には、後輩からの支持を集め、「面倒見のいい先輩ランキング」で2位、1位、2位と常に上位にランクインしていました。<br>
+        後輩含め、様々な方の相談に乗ったり、勉強や部活動のアドバイスをしたりと、常に周りをサポートする立場にいました。</p>
+        
+        <p class="sample_h_1">塾講師としての体験談</p>
+        <p>日能研での個別指導で、無口で教師嫌いと言われていたAさんを担当。<br>
+        最初の1ヶ月は声すら聞けない状況から、首振りだけで答えられる質問にするなどの工夫を重ね、少しずつ心を開いてもらいました。<br>
+        最終的にAさんは志望校に合格。<br>
+        合格祝いの際に「次来るとき電話する」と言われ、他の教師から「こんなに話すの初めて見た」と驚かれた経験は、教育者として最も誇らしい瞬間でした。</p>
+        
+        <p class="sample_h_8" id="focus">集中力</p>
+       <p>一度興味を持ったことに対しては、長時間集中して取り組むことができます。</p>
+        
+        <p class="sample_h_1">趣味</p>
+        <p>怪我で歩けなくなった時期があり、その時はゲームに没頭して14時間ぶっ続けでプレイし、気づいたら次の日の朝9時だったこともあります。</p>
+        
+        <p class="sample_h_1">読書</p>
+        <p>寝る前の読書も、面白い本に出会うと朝日が出るまで読み続けてしまうことがあります。<br>
+        現在は睡眠の質を保つために、寝る前の読書は封印中です。</p>
+        
+        <p class="sample_h_1">課題への取り組み</p>
+        <p>大学や仕事の課題も、一度集中モードに入ると周りが見えなくなるほど没頭できます。</p>
+        
+        <p class="sample_h_8" id="adaptability">適応力</p>
+        <p>アメリカでの生活経験や、様々な環境での経験から、新しい環境や状況にも柔軟に対応する力が身についています。</p>
+        
+        <p class="sample_h_1">言語</p>
+        <p>アメリカでの学校生活は最初は英語の壁に苦しみましたが、徐々に適応して友人関係も築けるようになりました。</p>
+        
+        <p class="sample_h_1">価値観</p>
+        <p>アメリカでイスラム教徒の親友を持ち、異なる価値観に触れる中で、日本で当たり前と思っていたことが当たり前でないことを知り、より客観的な視点で物事を捉えるよう努めています。</p>
+        
+        <!-- 弱みセクションの追加 -->
+        <div class="weakness-section" id="weakness">
+            <p class="sample_h_5">自分の弱み（おまけ）</p>
+            
+            <p class="sample_h_9">軸が定まっていない</p>
+            <p>周りの意見に流されやすく、優柔不断な面があります。<br>
+            何かを決める際には多数決をとることが多く、大体はマジョリティ側に立っているタイプです。<br>
+            自分の意見をしっかり持つよう意識していますが、人の意見を聞くとすぐに「それもそうだな」と思ってしまいます。</p>
+            
+            <p class="sample_h_9">視野が狭い</p>
+            <p>集中している時の弊害として、ご迷惑をおかけすることがあります。<br>
+            体感視野角が20°ほどしかないように感じることがあり、周りの声も聞こえなくなる時があります。<br>
+            パソコン作業中は画面の横に表示される通知にも気づかないことがよくあります。</p>
+            
+            <p class="sample_h_9">無茶しがち</p>
+            <p>スポーツも限界までやるせいで怪我が絶えません。<br>
+            宿題や課題は最終日に始めがちで、いつもヒイヒイ言いながら取り組んでいます。<br>
+            何をやるにも余裕を持ってこなせることが少なく、締め切り直前に全力を出すパターンが多いです。<br>
+            計画性を持って行動することが今後の課題です。</p>
+        </div>
+        
+        <a href="loading to HP.html" class="back-link">最初のページに戻る</a>
+        
+        <!-- フッターナビゲーション -->
+        <div class="footer-nav">
+            <a href="HP.html">Home</a>
+            <a href="index HP.html">About Me</a>
+            <a href="personality.html" class="active">Personality</a>
+            <a href="goals.html">Goals</a>
+        </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            // 現在のページを示すためのアクティブ状態の設定
+            var path = window.location.pathname;
+            var page = path.split("/").pop();
+            
+            $('.footer-nav a').each(function() {
+                var href = $(this).attr('href');
+                if (href === page || (page === '' && href === 'index.html')) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
