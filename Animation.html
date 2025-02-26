@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #6c5ce7;
+        }
+
+        .card {
+            background-color: white;
+            width: 1000px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container {
+            background-color: #74b9ff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 90px;
+            margin: 0 auto;
+            display: block;
+            background-color: #a8e6ff;
+            margin-bottom: 30px;
+        }
+
+        .profile-name {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .profile-description {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .about-me {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 850px;
+            margin: 0 auto;
+        }
+
+        .head_test-wrap {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .head_test {
+            margin: 0;
+            font-size: 32px;
+            position: relative;
+            font-weight: bold;
+            display: inline-block;
+            background-color: white;
+            padding: 0 40px;
+            z-index: 1;
+        }
+
+        .head_test-wrap:before {
+            content: '';
+            background-color: #000;
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            top: 50%;
+            margin: auto;
+        }
+
+        .about-me-item {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            font-size: 20px;
+        }
+
+        .about-me-label {
+            font-weight: bold;
+            text-align: right;
+            width: 220px;
+        }
+
+        .about-me-value {
+            text-align: left;
+            width: 220px;
+        }
+
+        .photo-gallery {
+            margin: 50px auto;
+            width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .photo {
+            width: 100%;
+            height: 300px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+        }
+
+        .link-button {
+            text-align: center;
+            display: block;
+            color: #0084ff;
+            text-decoration: none;
+            margin-top: 40px;
+            font-size: 20px;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .link-button:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <div class="profile-container">
+            <div class="card">
+                <div class="profile-title">Profile</div>
+                <img src="profile-image.jpg" alt="プロフィール画像" class="profile-image">
+                <div class="profile-name">Yuki Hashimoto</div>
+                <div class="profile-description">橋本 悠生</div>
+                
+                <div class="about-me">
+                    <div class="head_test-wrap">
+                        <h1 class="head_test">About Me</h1>
+                    </div>
+                    <div class="about-me-item">
+                        <span class="about-me-label">Age/年齢</span>
+                        <span class="about-me-value">22</span>
+                    </div>
+                    <div class="about-me-item">
+                        <span class="about-me-label">Univ./大学</span>
+                        <span class="about-me-value">慶應大学</span>
+                    </div>
+                    <div class="about-me-item">
+                        <span class="about-me-label">Faculty/学部</span>
+                        <span class="about-me-value">環境情報学部</span>
+                    </div>
+                    <div class="about-me-item">
+                        <span class="about-me-label">Date of Birth/生年月日</span>
+                        <span class="about-me-value">02/05/17</span>
+                    </div>
+                </div>
+    
+                <div class="photo-gallery">
+                    <a href="index loading to index 2.html">
+                        <img src="IMG_omuraisu.jpeg" alt="オムライス" class="photo">
+                    </a>
+                    <div class="photo"></div>
+                    <div class="photo"></div>
+                </div>
+    
+                <a href="#" class="link-button">リンクページへ</a>
+            </div>
+        </div>
+</body>
+</html>
