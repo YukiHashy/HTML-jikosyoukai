@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学歴</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1em;
+            border-radius: 8px;
+        }
+        
+        p {
+            margin-bottom: 1.5em;
+        }
+        
+        .back-link {
+            margin: 3em auto;
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+        
+        .toc-container {
+            width: 80%;
+            max-width: 500px;
+            margin: 2em auto 5em auto;
+            border: 3px solid orange;
+            padding: 30px 20px 20px;
+            display: inline-block;
+            text-align: left;
+            border-radius: 10px;
+            position: relative;
+            background-color: white;
+        }
+        
+        .toc-title {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: orange;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 1.5em;
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            margin: 10px 0;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .toc li::before {
+            content: "\25A0";
+            color: blue;
+            margin-right: 10px;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+        
+        .toc a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.8);
+            font-weight: bold;
+        }
+        
+        .sample_h_8 {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: .5em;
+            margin-bottom: 1.5em;
+            margin-top: 4em;
+            border-radius: 15px;
+            color: #2f51a2;
+            background: #f4f4f4;
+            border: 2px solid #2f51a2;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            display: block;
+            width: 100%;
+        }
+        
+        .sample_h_1 {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding-top: 1em;
+            padding-bottom: .5em;
+            margin-bottom: 1.5em;
+            border-bottom: solid 3px #111111;
+        }
+        
+        .sample_h_4 {
+            font-size: 1.8em;
+            font-weight: bold;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            margin-bottom: 1.5em;
+            border-top: 3px solid #3f9613;
+            border-bottom: 3px solid #409614;
+            color: #409614;
+            text-align: center;
+        }
+        
+        h3 {
+            margin-top: 3em;
+        }
+        
+        .school-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1.5em;
+        }
+        
+        .school-images img {
+            width: 300px;
+            height: 200px;
+            object-fit: contain;
+            flex: 0 0 auto;
+        }
+        
+        /* タブレット向けスタイル */
+        @media screen and (max-width: 768px) {
+            .toc-container {
+                width: 90%;
+            }
+            
+            .sample_h_8 {
+                font-size: 1.3em;
+                margin-top: 3em;
+            }
+            
+            .sample_h_1 {
+                font-size: 1.3em;
+                padding-top: 0.8em;
+            }
+            
+            .sample_h_4 {
+                font-size: 1.5em;
+            }
+            
+            .toc li {
+                font-size: 1.1em;
+            }
+            
+            .school-images img {
+                width: 250px;
+                height: 170px;
+            }
+        }
+        
+        /* モバイル向けスタイル */
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .toc-container {
+                width: 100%;
+                padding: 25px 15px 15px;
+            }
+            
+            .toc-title {
+                font-size: 1.2em;
+                top: -15px;
+            }
+            
+            .toc li {
+                font-size: 1em;
+                margin: 8px 0;
+            }
+            
+            .toc li::before {
+                font-size: 1.2em;
+                margin-right: 8px;
+            }
+            
+            .sample_h_8 {
+                font-size: 1.2em;
+                padding: .4em;
+                margin-top: 2.5em;
+                margin-bottom: 1em;
+            }
+            
+            .sample_h_1 {
+                font-size: 1.2em;
+                padding-top: 0.5em;
+                margin-bottom: 1em;
+            }
+            
+            .sample_h_4 {
+                font-size: 1.3em;
+                padding-top: 0.8em;
+                padding-bottom: 0.8em;
+            }
+            
+            .school-images {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .school-images img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                margin-bottom: 10px;
+            }
+            
+            p {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="sample_h_4">趣味</p>
+        
+        <div class="toc-container">
+            <div class="toc-title">目次</div>
+            <div class="toc">
+                <ul>
+                    <li><a href="#shougaku">サッカー</a></li>
+                    <li><a href="#chugaku">ゲーム</a></li>
+                    <li><a href="#koukou1">食事</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <p class="sample_h_8" id="shougaku">サッカー</p>
+        <div class="school-images">
+            <img src="Soccer.jpg" alt="サッカー">
+        </div>
+        <p>小学生からサッカー人生スタート。今現在もサッカーサークルとフットサルサークルで活動しています。Ashizaru FCさんの動画にも過去2度出演。写真はフットサル大会優勝時のものです。</p>
+        
+        <p class="sample_h_8" id="chugaku">ゲーム</p>
+        <ul>
+            <li class="sample_h_1">eFootball2025</li>
+                <p>サッカーゲームです。かれこれプレイ歴８年目突入です。 </p>
+            <li class="sample_h_1">ポケポケ</li>
+                <p>楽しいです。めっちゃハマってます。</p>
+            <li class="sample_h_1">スマブラ</li>
+                <p>コロナ禍ひまで始めた。今は全プレイヤーの上位1%以内に入っています。友達とは1人vs3人でちょうどいい感じです。</p>
+          </ul>
+        </div>
+       
+        <p class="sample_h_8" id="koukou1">食事</p>
+        <div class="school-images">
+            <img src="kaeru.jpg" alt="こっちの高校時代の写真なかったです泣">
+        </div>
+        <p>ワニ、ウサギ、カエル、バッタなど、なんでも食べます。ワニが一番美味しかった！　写真はベトナムで食べたカエル料理です。</p>
+
+          
+        <a href="index loading to HP3.html" class="back-link">最初のページに戻る</a>
+    </div>
+</body>
+</html>
