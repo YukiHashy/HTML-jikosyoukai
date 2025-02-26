@@ -1,0 +1,36 @@
+.sample_h_8 {
+    font-size: 1.5em;          /* フォントサイズ */
+    font-weight: bold;         /* フォント太さ */
+    padding: .5em;
+    margin-bottom: 2em;
+    border-radius: 15px;       /* 角丸 */
+    color: #2f51a2;           /* フォント色 */
+    background: #f4f4f4;      /* 背景色 */
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);  /* 影をつける */
+    border: 2px solid #2f51a2; /* 枠線 */
+    margin-top: 6em;          /* 上部マージン */
+}
+
+.sample_h_1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-top: 6em;
+    padding-bottom: .5em;
+    margin-bottom: 2em;
+    border-bottom: solid 3px #111111;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li.sample_h_1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-top: 1em;
+    padding-bottom: .5em;
+    margin-bottom: 1.5em;
+    border-bottom: solid 3px #111111;
+    text-align: left;
+  }
